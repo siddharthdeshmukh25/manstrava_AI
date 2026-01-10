@@ -1,0 +1,7 @@
+[build]
+  functions = "functions"
+  publish = "public"
+
+[functions]
+  external_node_modules = ["express", "serverless-http", "groq-sdk", "cors", "dotenv"]
+  node_bundler = "esbuild"
