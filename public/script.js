@@ -49,7 +49,8 @@ stopBtn.onclick = () => {
 };
 async function getAIResponse(text) {
     try {
-        const response = await fetch("http://localhost:5000/chat", {
+        // 👇 YAHAN CHANGE KIYA HAI (Localhost hata diya)
+        const response = await fetch("/.netlify/functions/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: text })
@@ -61,6 +62,7 @@ async function getAIResponse(text) {
     } catch (err) {
         aiTextEl.innerText = "Server Error.";
         statusText.innerText = "OFFLINE";
+        console.error("Connection Error:", err);
     }
 }
 
