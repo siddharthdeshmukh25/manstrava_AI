@@ -17,7 +17,6 @@ body {
     justify-content: center;
 }
 
-/* Background */
 .bg-dark {
     position: absolute;
     width: 100%; height: 100%;
@@ -37,34 +36,57 @@ body {
 
 header { text-align: center; z-index: 10; margin-top: 10px; }
 .brand { font-size: 1.8rem; font-weight: 600; letter-spacing: 4px; color: var(--cyan); }
+.tag { color: white; font-size: 1rem; vertical-align: super; }
 .status-indicator { font-size: 0.8rem; color: #666; letter-spacing: 2px; margin-top: 5px; }
 
-/* --- CORE --- */
-.core-wrapper {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+#robot-container {
+    position: fixed;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 50;
+    pointer-events: none;
 }
 
-.neon-circle {
-    width: 140px;
-    height: 140px;
+#robot-container.idle-mode {
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+}
+
+#robot-container.idle-mode .robot-full { display: none; }
+#robot-container.idle-mode .robot-mini { display: block; }
+#robot-container.idle-mode img { width: 100%; filter: drop-shadow(0 0 5px var(--cyan)); }
+
+#robot-container.speaking-mode {
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: auto;
+}
+
+#robot-container.speaking-mode .robot-mini { display: none; }
+#robot-container.speaking-mode .robot-full { display: block; position: relative; }
+#robot-container.speaking-mode img { width: 100%; filter: drop-shadow(0 10px 20px rgba(0, 243, 255, 0.4)); }
+
+.mouth-glow {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: var(--cyan);
+    box-shadow: 0 0 15px var(--cyan);
+    opacity: 0;
     border-radius: 50%;
-    border: 2px solid var(--cyan);
-    background: rgba(0, 243, 255, 0.02);
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.1s ease-out; 
+    transition: 0.1s;
 }
 
 .chat-area {
     width: 90%;
     max-width: 600px;
-    height: 35vh; 
+    height: 40vh;
     background: var(--glass);
     border-top: 1px solid rgba(0, 243, 255, 0.3);
     border-bottom: 1px solid rgba(0, 243, 255, 0.3);
@@ -74,6 +96,7 @@ header { text-align: center; z-index: 10; margin-top: 10px; }
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-top: auto; 
 }
 
 .user-line { 
@@ -114,7 +137,6 @@ header { text-align: center; z-index: 10; margin-top: 10px; }
     display: flex;
     align-items: center;
     justify-content: center;
-    
     position: relative; 
 }
 
@@ -136,9 +158,7 @@ header { text-align: center; z-index: 10; margin-top: 10px; }
 }
 
 #stop-btn:hover { background: var(--red); color: white; }
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
 
 .hint { 
     font-size: 0.7rem; 
@@ -148,66 +168,7 @@ header { text-align: center; z-index: 10; margin-top: 10px; }
 }
 
 @media (max-width: 600px) {
-    .neon-circle { width: 100px; height: 100px; } 
+    #robot-container.speaking-mode { top: 18%; width: 140px; }
     .chat-area { height: 45vh; width: 95%; padding: 15px; } 
     .brand { font-size: 1.5rem; }
-    .ai-line { font-size: 1rem; }
-}
-#robot-container {
-    position: fixed;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth Animation */
-    z-index: 50;
-}
-
-/* --- STATE 1: IDLE (Corner me Mini Head) --- */
-#robot-container.idle-mode {
-    bottom: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-}
-
-#robot-container.idle-mode .robot-full { display: none; }
-#robot-container.idle-mode .robot-mini { display: block; }
-
-#robot-container.idle-mode img {
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 0 5px var(--cyan));
-}
-
-/* --- STATE 2: SPEAKING (Center me Full Body) --- */
-#robot-container.speaking-mode {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Screen ke center me */
-    width: 250px; /* Robot ka size bada */
-    height: auto;
-}
-
-#robot-container.speaking-mode .robot-mini { display: none; }
-#robot-container.speaking-mode .robot-full { 
-    display: block; 
-    position: relative;
-    text-align: center;
-}
-
-#robot-container.speaking-mode img {
-    width: 100%;
-    filter: drop-shadow(0 0 20px var(--cyan));
-}
-
-/* Bolne wala animation (Mouth Glow) */
-.mouth-glow {
-    position: absolute;
-    top: 40%; /* Robot ke face ke hisab se adjust karna */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    background: var(--cyan);
-    box-shadow: 0 0 10px var(--cyan);
-    opacity: 0;
-    border-radius: 50%;
-    transition: 0.1s;
 }
