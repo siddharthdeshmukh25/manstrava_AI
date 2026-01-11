@@ -18,27 +18,25 @@
             <div class="status-indicator">SYSTEM ONLINE</div>
         </header>
 
-        <div class="core-wrapper">
-            <div id="ai-circle" class="neon-circle">
-                <div class="inner-glow"></div>
-            </div>
-        </div>
+        <div id="robot-container" class="idle-mode">
+            
+            <div class="robot-full">
+                <img src="assets/images/minirobot1.png" alt="Full Robot" id="robot-full-img">
+                <div class="mouth-glow"></div> </div>
 
+            <div class="robot-mini">
+                <img src="assets/images/mini_robot_head.png" alt="Mini Robot" id="robot-mini-img">
+            </div>
+
+        </div>
         <div class="chat-area">
             <p id="user-text" class="user-line">...</p>
             <p id="ai-text" class="ai-line"></p> 
         </div>
 
         <div class="controls">
-            
-            <button id="stop-btn" class="hidden">
-                <div class="icon">⏹</div>
-            </button>
-
-            <button id="mic-btn">
-                <div class="icon">🎙</div>
-            </button>
-            
+            <button id="stop-btn" class="hidden"><div class="icon">⏹</div></button>
+            <button id="mic-btn"><div class="icon">🎙</div></button>
             <p class="hint">TAP MIC TO SPEAK</p>
         </div>
 
